@@ -1,5 +1,4 @@
 const express = require("express");
-const apicache = require("apicache");
 
 const app = express();
 
@@ -11,9 +10,7 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 
-const cache = apicache.middleware("5 minutes");
-
-app.post("/", cache, async (req, res) => {
+app.post("/", async (req, res) => {
   const { inputText } = req.body;
   console.log(inputText);
 
@@ -52,7 +49,6 @@ async function runSample(projectId, inputText) {
     },
   };
 
-  // Send request and log result
   const responses = await sessionClient.detectIntent(request);
   // console.log("Detected intent");
   const result = responses[0].queryResult;
