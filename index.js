@@ -1,5 +1,6 @@
 const express = require("express");
-import apicache from "apicache";
+const apicache = require("apicache");
+
 const app = express();
 let cache = apicache.middleware;
 const dialogflow = require("@google-cloud/dialogflow");
