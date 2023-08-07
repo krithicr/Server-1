@@ -1,5 +1,7 @@
 const express = require("express");
+import apicache from "apicache";
 const app = express();
+let cache = apicache.middleware;
 const dialogflow = require("@google-cloud/dialogflow");
 const uuid = require("uuid");
 const Path = require("path");
@@ -8,7 +10,7 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 
-app.post("/api/dialogflow", async (req, res) => {
+app.post("/api/dialogflow", cache("10 minutes"), async (req, res) => {
   const { inputText } = req.body;
   console.log(inputText);
 
