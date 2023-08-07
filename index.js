@@ -10,7 +10,7 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 
-app.post("/api/dialogflow", async (req, res) => {
+app.post("/", cache("5 minutes"), async (req, res) => {
   const { inputText } = req.body;
   console.log(inputText);
 
